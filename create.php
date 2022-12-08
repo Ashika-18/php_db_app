@@ -31,6 +31,47 @@ try {
 </head>
 
 <body>
-    
+    <header>
+        <nav>
+            <a href="index.php">商品管理アプリ</a>
+        </nav>
+    </header>
+    <main>
+        <article class="registration">
+            <h1>商品登録</h1>
+            <div class="back">
+                <a href="read.php" class="btn">戻る</a>
+            </div>
+            <form action="create.php" method="post" class="registration-form">
+                <div>
+                    <label for="product_code">商品コード</label>
+                    <input type="number" name="product_code" min="0" max="100000000" required>
+
+                    <label for="product_name">商品名</label>
+                    <input type="text" name="product_name" maxlength="50" required>
+
+                    <label for="price">単価</label>
+                    <input type="nember" name="price" min="0" max="100000000" required>
+
+                    <label for="stock_quantity">在庫数</label>
+                    <input type="nember" name="stock_quantity" min="0" max="100000000" required>
+
+                    <label for="vendor_code">仕入れ先コード</label>
+                    <select name="vendor_code" required>
+                        <option disabled selected value>選択してください</option>
+                        <?php
+                        foreach ($vendor_codes as $vendor_code) {
+                            echo "<option value='{$vendor_code}'>{$vendor_code}</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn" name="submit" value="create">登録</button>
+            </form>
+        </article>
+    </main>
+    <footer>
+        <p class="copyright">&copy; 商品管理アプリ All rights reserved.</p>
+    </footer>
 </body>
 </html>
