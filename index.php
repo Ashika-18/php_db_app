@@ -17,7 +17,7 @@
             <a href="index.php">商品管理アプリ</a>
         </nav>
     </header>
-    <manin>
+    <main>
         <article class="home">
             <h1>商品管理アプリ</h1>
             <p>『PHPとデータベースを連携しよう』成果物</p>
