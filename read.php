@@ -6,7 +6,17 @@ $password = 'root';
 try {
     $pdo = new PDO($dsn, $user, $password);
 
-    $sql_select = 'SELECT * FROM products';
+    if (isset($_GET['order'])) {
+        $order = $_GET['order'];
+    } else {
+        $order = NULL;
+    }
+
+    if ($order === 'desc') {
+        $sql_select = 'SELECT * FROM products ORDER BY updated_at DESC';
+    } else {
+        $sql_select = 'SELECT * FROM products ORDER BY updated_at ASC';
+    }
 
     $stmt_select = $pdo->query($sql_select);
 
@@ -40,6 +50,12 @@ try {
             <div>
                 <div>
                 <!-- ここに並び替えボタンと検索ボックスを設置する -->
+                    <a href="read.php?order=desc">
+                        <img src="images/desc.png" alt="降順に並び替え" class="sort-img">
+                    </a>
+                    <a href="read.php?order=asc">
+                        <img src="images/asc.png" alt="昇順に並び替え" class="sort-img">
+                    </a>
                 </div>
                 <a href="#" class="btn">商品登録</a>
             </div>
