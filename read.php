@@ -18,10 +18,37 @@
         </nav>
     </header>
     <manin>
-        <article class="home">
-            <h1>商品管理アプリ</h1>
-            <p>『PHPとデータベースを連携しよう』成果物</p>
-            <a href="read.php" class="btn">商品一覧</a>
+        <article class="products">
+            <h1>商品一覧</h1>
+            <div>
+                <div>
+                <!-- ここに並び替えボタンと検索ボックスを設置する -->
+                </div>
+                <a href="#" class="btn">商品登録</a>
+            </div>
+            <table class="products-table">
+                <tr>
+                    <th>商品コード</th>
+                    <th>商品名</th>
+                    <th>単価</th>
+                    <th>在庫数</th>
+                    <th>仕入れ先コード</th>
+                </tr>
+                <?php
+                foreach ($products as $product) {
+                    $table_row = " 
+                        <tr>
+                        <td>{$product['procuct_code']}</td>
+                        <td>{$product['product_name']}</td>
+                        <td>{$product['price']}</td>
+                        <td>{$product['stock_quantity']}</td>
+                        <td>{$product['vendor_code']}</td>
+                        </tr>
+                    ";
+                    echo $table_row;
+                }
+                ?>
+            </table>
         </article>
     </main>
 </body>
