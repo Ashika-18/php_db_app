@@ -26,7 +26,8 @@ try {
     <link rel="stylesheet" href="css/style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com"
+    crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 </head>
 
@@ -51,10 +52,10 @@ try {
                     <input type="text" name="product_name" maxlength="50" required>
 
                     <label for="price">単価</label>
-                    <input type="nember" name="price" min="0" max="100000000" required>
+                    <input type="number" name="price" min="0" max="100000000" required>
 
                     <label for="stock_quantity">在庫数</label>
-                    <input type="nember" name="stock_quantity" min="0" max="100000000" required>
+                    <input type="number" name="stock_quantity" min="0" max="100000000" required>
 
                     <label for="vendor_code">仕入れ先コード</label>
                     <select name="vendor_code" required>
