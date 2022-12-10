@@ -162,6 +162,10 @@ footer {
     text-align: center;
 }
 
+.success {
+    color: #28a745;
+}
+
 /* create.php */
 .registration {
     box-sizing: border-box;
@@ -172,7 +176,7 @@ footer {
 }
 
 .registration {
-    margin: 0 0 1.75rem;
+    margin: 0 auto 1.75rem;
     font-size: 1.75rem;
 }
 
