@@ -1,9 +1,47 @@
+<!-- update.php -->
 <?php
 $dsn = 'mysql:dbname=php_db_app;host=localhost;charset=utf8mb4';
 $user = 'root';
 $password = 'root';
 
-if (isset($_POST['id'])) {
+// 更新ボタンを押した時の処理
+
+if (isset($_POST['submit'])) {
+    try {
+        $pdo = new PDO($dsn, $user, $password);
+
+        $sql_update = '
+        UPDATE products
+        SET product_code = :product_code,
+        product_name = :product_name,
+        price = :price,
+        stock_quantity = :stock_quantity,
+        vendor_code = :vendor_code
+        WHERE id = :id
+        ';
+
+        $stmt_update = $pdo->prepare($sql_update);
+
+        $stmt_update->bindValue(':product_code', $_POST['product_code'], PDO::PARAM_INT);
+        $stmt_update->bindValue(':product_name', $_POST['product_name'], PDO::PARAM_STR);
+        $stmt_update->bindValue(':price', $_POST['price'], PDO::PARAM_INT);
+        $stmt_update->bindValue(':stock_quantity', $_POST['stock_quantity'], PDO::PARAM_INT);
+        $stmt_update->bindValue(':vendor_code', $_POST['vendor_code'], PDO::PARAM_INT);
+        $stmt_update->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+
+        $stmt_update->execute();
+
+        $count = $stmt_update->rowCount();
+
+        $message = "商品を{$count}件編集しました！";
+
+        header("Location: read.php?message={$message}");
+    } catch (PDOException $e) {
+        exit($e->getMessage());
+    }
+}
+
+if (isset($_GET['id'])) {
     try {
         $pdo = new PDO($dsn, $user, $password);
 
@@ -58,9 +96,9 @@ if (isset($_POST['id'])) {
         <article class="registration">
             <h1>商品編集</h1>
             <div class="back">
-                <a href="read.php" class="btn">戻る</a>
+                <a href="read.php" class="btn">&lt; 戻る</a>
             </div>
-            <form action="create.php" method="post" class="registration-form">
+            <form action="update.php?id=<?= $_GET['id'] ?>" method="post" class="registration-form">
                 <div>
                     <label for="product_code">商品コード</label>
                     <input type="number" name="product_code" min="0" max="100000000" required>
@@ -84,7 +122,7 @@ if (isset($_POST['id'])) {
                         ?>
                     </select>
                 </div>
-                <button type="submit" class="submit-btn" name="submit" value="create">登録</button>
+                <button type="submit" class="submit-btn" name="submit" value="update">更新</button>
             </form>
         </article>
     </main>
