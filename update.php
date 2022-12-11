@@ -1,8 +1,8 @@
 <!-- update.php -->
 <?php
-$dsn = 'mysql:dbname=php_db_app;host=localhost;charset=utf8mb4';
-$user = 'root';
-$password = 'root';
+$dsn = 'mysql:dbname=LAA1456779-php;host=mysql208.phy.lolipop.lan;charset=utf8mb4';
+$user = 'LAA1456779';
+$password = 'kazu5418';
 
 // 更新ボタンを押した時の処理
 
